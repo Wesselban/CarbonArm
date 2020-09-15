@@ -5,6 +5,7 @@ de string zal eerst moeten opgesplitst worden voordat deze geconverteerd kan wor
 
 # bevindingen tot nu toe:
 - lijkt er op dat negatieve nummers gebruik maken van het 1e bitje op 1 te zetten en vandaar hoge spikes.
+Of dat het komt dat negatieve getallen eigenlijk FFFFFFFF min het getal zijn in negatief
 - Er lijkt een conversie te zijn van 19120 die hoogstwaarschijnlijk te maken heeft met de gearing
 - de takes zijn opgesplit in meerdere columns zoals hier onder:
 
