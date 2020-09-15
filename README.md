@@ -23,4 +23,10 @@ Ik verwacht dat de vraagtekens alleen maar een "indicator" is voor wat het is
 - convert degrees to single line
   - moet dan twee kanten op kunnen werken
 
+# toekomstige plannen
 Als dat allemaal werkt kan er nagedacht worden over het echte bewegen van de arm.
+ook de beweging zal in eerste instatie worden beperkt naar een:
+- een as begin hoek -> eind hoek constante snelheid.
+- twee assen begin hoek -> eind hoek
+- een as versnellende beweging van begin -> eind
+- een as vertragende beweging van begin -> eind
