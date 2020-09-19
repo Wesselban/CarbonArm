@@ -3,16 +3,31 @@ import functools
 import binascii
  
 def splitstringLine(inputString):
-    return False
+    outputString = ""
+    for i in range(len(inputString)):
+        if i%44 == 8:
+            outputString += " "
+        if i%44 == 16:
+            outputString += " "
+        if i%44 == 20:
+            outputString += " "
+        if i%44 == 28:
+            outputString += " "
+        if i%44 == 32:
+            outputString += " "
+        if i%44 == 40:
+            outputString += " "
+        outputString += inputString[i]
+    return outputString
 
 def splitstringValue(inputString):
     temp =(struct.unpack('<i', inputString))
     return functools.reduce(lambda sub, ele: sub * 10 + ele,temp)
 
-def ConvertTo44(string):
+def ConvertTo50(string):
     temp = ''
     for i in range(len(string)):
-            if i%44 == 0 :
+            if i%50 == 0 :
                 if i != 0:
                     temp += '\n'
             temp += string[i]
@@ -36,7 +51,7 @@ def ConvertCMPtoTXT(cmpFile):
         content = f.read()
     outputfile = open(cmpFile[0:-3]+"txt","w+")
     tempString = str(binascii.hexlify(content))[2:-1]
-    outputfile.write(ConvertTo44(tempString))
+    outputfile.write(ConvertTo50(splitstringLine(tempString)))
     return cmpFile[0:-3]+"txt"
 
 def ConvertTXTtoCMP(txtFile):
@@ -47,5 +62,5 @@ def ConvertTXTtoCMP(txtFile):
     with open(txtFile, 'rb') as f:
         content = f.read()
     outputfile = open(txtFile[0:-3]+"cmp","w+")
-    outputfile.write(str(binascii.unhexlify(content))[2:-1].replace(' ', ''))
+    outputfile.write(str((binascii.unhexlify(content))[2:-1].replace(' ', '').replace('\n', '')))
     return txtFile[0:-3]+"cmp"
