@@ -17,10 +17,9 @@ class importdatatests(unittest.TestCase):
         self.assertEqual(importdata.ConvertCMPtoTXT("test.cmp"), "test.txt")
     def test_convertTXTtoCMPNoFile(self):
         self.assertEqual(importdata.ConvertTXTtoCMP(""), False)
-    def test_convertTXTtoCMPNTXTFile(self):
+    def test_convertTXTtoCMPNoTXTFile(self):
         self.assertEqual(importdata.ConvertTXTtoCMP("test.cmp"), False)
     def test_ConvertTXTtoCMPNonExistingFile(self):
         self.assertEqual(importdata.ConvertTXTtoCMP("testnonexisting.txt"), False)
     def test_ConvertTXTtoCMP(self):
         self.assertEqual(importdata.ConvertTXTtoCMP("test2.txt"), "test2.cmp")
-    
