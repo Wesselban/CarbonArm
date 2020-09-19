@@ -85,4 +85,13 @@ def ConvertStringToHexString(inputString):
     return returnString
 
 def ConvertHextoHexcodec(inputHexString):
-    return binascii.unhexlify(inputHexString)
+    return binascii.unhexlify(inputHexString.rstrip("\n"))
+
+def test(filename, outputfile):
+    if CheckIfValidInputFile(filename) == False:
+        return False
+    fileOut = open(outputfile, 'w+')
+    fileIn = open(filename, 'r') 
+    Lines = fileIn.readlines()
+    for line in Lines:
+        fileOut.write(ConvertStringToHexString(line) + '\n')
