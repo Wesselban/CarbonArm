@@ -1,5 +1,5 @@
 import importdata
+import binascii
 
 if __name__ == '__main__':
-    importdata.ConvertCMPtoTXT("001_Take_007.cmp")
-    print(importdata.ConvertTo50("00000000000000550002000000000000006400c800000000000"))
+    print(importdata.ConvertStringToHexString("ffffffff 00000000 64000000 c8000000 00000000 00000000 55000000"))

@@ -10,24 +10,30 @@ def splitstringLine(inputString):
         if i%44 == 16:
             outputString += " "
         if i%44 == 20:
-            outputString += " "
+            outputString += "0000 "
         if i%44 == 28:
             outputString += " "
         if i%44 == 32:
-            outputString += " "
+            outputString += "0000 "
         if i%44 == 40:
             outputString += " "
+        if i%44 == 0:
+            if i != 0:
+                outputString += "0000"
         outputString += inputString[i]
+    outputString +="0000"
     return outputString
 
 def splitstringValue(inputString):
     temp =(struct.unpack('<i', inputString))
-    return functools.reduce(lambda sub, ele: sub * 10 + ele,temp)
+    tempvalue = functools.reduce(lambda sub, ele: sub * 10 + ele,temp)
+    return tempvalue
 
-def ConvertTo50(string):
+
+def ConvertTo62(string):
     temp = ''
     for i in range(len(string)):
-            if i%50 == 0 :
+            if i%62 == 0 :
                 if i != 0:
                     temp += '\n'
             temp += string[i]
@@ -51,7 +57,7 @@ def ConvertCMPtoTXT(cmpFile):
         content = f.read()
     outputfile = open(cmpFile[0:-3]+"txt","w+")
     tempString = str(binascii.hexlify(content))[2:-1]
-    outputfile.write(ConvertTo50(splitstringLine(tempString)))
+    outputfile.write(ConvertTo62(splitstringLine(tempString)))
     return cmpFile[0:-3]+"txt"
 
 def ConvertTXTtoCMP(txtFile):
@@ -64,3 +70,19 @@ def ConvertTXTtoCMP(txtFile):
     outputfile = open(txtFile[0:-3]+"cmp","w+")
     outputfile.write(str((binascii.unhexlify(content))[2:-1].replace(' ', '').replace('\n', '')))
     return txtFile[0:-3]+"cmp"
+
+def ConvertStringToHexString(inputString):
+    tempString = ""
+    returnString = ""
+    for i in range(len(inputString)):
+        if inputString[i] == ' ':
+            returnString += str(splitstringValue(ConvertHextoHexcodec(tempString))) + " "
+            tempString = ""
+            continue
+        tempString += inputString[i]
+
+    returnString += str(splitstringValue(ConvertHextoHexcodec(tempString)))
+    return returnString
+
+def ConvertHextoHexcodec(inputHexString):
+    return binascii.unhexlify(inputHexString)

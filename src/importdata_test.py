@@ -23,3 +23,6 @@ class importdatatests(unittest.TestCase):
         self.assertEqual(importdata.ConvertTXTtoCMP("testnonexisting.txt"), False)
     def test_ConvertTXTtoCMP(self):
         self.assertEqual(importdata.ConvertTXTtoCMP("test2.txt"), "test2.cmp")
+
+    def test_converString(self):
+        self.assertEqual(importdata.ConvertStringToHexString("00000000 00000000 64000000 c8000000 00000000 00000000 55000000"), "0 0 100 200 0 0 85")
